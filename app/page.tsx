@@ -21,7 +21,7 @@ export default function Home() {
         </div>
         :
         <div className="hidden md:block w-3/4 md:flex items-center justify-center flex-col gap-5">
-          <Image src="/chat.png" alt="Chat" width={200} height={200} />
+          <Image src="/chat.png" alt="" width={200} height={200} />
           <p className="text-xl font-semibold">Select a user to start chatting 💬</p>
         </div>
         }

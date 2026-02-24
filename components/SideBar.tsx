@@ -76,7 +76,7 @@ const SideBar = ({ selectedUser, setSelectedUser }: { selectedUser: any, setSele
                   />
                 </div>
                 <div className="flex flex-col flex-1 text-left overflow-hidden">
-                  <span className="text-sm font-semibold">{u.name}</span>
+                  <span className=" md:text-sm font-semibold">{u.name}</span>
                   <LastMessage otherUserId={u.clerkId} />
                 </div>
                 <UnreadBadge senderId={u.clerkId} receiverId={user?.id!} />

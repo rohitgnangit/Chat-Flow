@@ -137,7 +137,7 @@ const ChatContainer = ({
             />
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-lg">{selectedUser.name}</span>
+            <span className="font-semibold text-xl md:text-lg">{selectedUser.name}</span>
             <span className="text-xs text-gray-500">
               {freshSelectedUser?.isTyping ? (
                 <span className="text-slate-500">typing...</span>
@@ -151,7 +151,7 @@ const ChatContainer = ({
         </div>
         <div className="profile flex items-center gap-5">
           <p className=" font-semibold">
-            <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500">
+            <span className="md:text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500">
               {user?.firstName}
             </span>
           </p>
@@ -188,7 +188,7 @@ const ChatContainer = ({
                   className={`flex ${msg.senderId === user?.id ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`px-4 py-2 rounded-2xl max-w-xs text-sm ${
+                    className={`px-4 py-2 rounded-2xl max-w-xs text-sm text-semibold ${
                       msg.senderId === user?.id
                         ? "bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white"
                         : "bg-white text-black shadow"
