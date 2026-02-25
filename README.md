@@ -21,6 +21,8 @@ A real-time chat application built with Next.js, TypeScript, Clerk, and Convex.
 - 🔍 **Search Users** — Search users by name in the sidebar
 - 🕐 **Last Message Preview** — See the last message under each user in the sidebar
 - 📱 **Responsive Layout** — Works on both desktop and mobile
+### Extra Feature :
+- 🗑️ **Delete Own Messages** — You can delete your own messages in Desktop
 
 ## Tech Stack
 

@@ -114,6 +114,10 @@ const ChatContainer = ({
     });
   }, [selectedUser, messages]);
 
+  // Delete message mutation
+  const deleteMessage = useMutation(api.messages.deleteMessage);
+
+
   return (
     <div className="h-full">
       <nav className="bg-white w-full md:w-3/4 fixed h-15 shadow-md z-50 py-5 px-3 md:px-10 flex justify-between items-center">
@@ -137,7 +141,9 @@ const ChatContainer = ({
             />
           </div>
           <div className="flex flex-col">
-            <span className="font-semibold text-xl md:text-lg">{selectedUser.name}</span>
+            <span className="font-semibold text-xl md:text-lg">
+              {selectedUser.name}
+            </span>
             <span className="text-xs text-gray-500">
               {freshSelectedUser?.isTyping ? (
                 <span className="text-slate-500">typing...</span>
@@ -188,19 +194,37 @@ const ChatContainer = ({
                   className={`flex ${msg.senderId === user?.id ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`px-4 py-2 rounded-2xl max-w-xs text-sm text-semibold ${
-                      msg.senderId === user?.id
-                        ? "bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white"
-                        : "bg-white text-black shadow"
-                    }`}
+                    className={`flex items-end gap-2 group ${msg.senderId === user?.id ? "justify-end" : "justify-start"}`}
                   >
-                    {msg.content}
-                    <p className="text-xs mt-1 opacity-60 text-right">
-                      {new Date(msg.createdAt).toLocaleTimeString([], {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </p>
+                    {/* Delete button for self messages */}
+                    {msg.senderId === user?.id && !msg.isDeleted && (
+                      <button
+                        onClick={() => deleteMessage({ messageId: msg._id })}
+                        className="opacity-0 group-hover:opacity-100 transition-opacity text-xs text-slate-400 hover:text-red-400 mb-2 cursor-pointer"
+                      >
+                        🗑️
+                      </button>
+                    )}
+
+                    <div
+                      className={`px-4 py-2 rounded-2xl max-w-xs text-sm ${
+                        msg.isDeleted
+                          ? "bg-slate-100 text-slate-400 italic"
+                          : msg.senderId === user?.id
+                            ? "bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white"
+                            : "bg-white text-black shadow"
+                      }`}
+                    >
+                      {msg.isDeleted ? "This message was deleted" : msg.content}
+                      {!msg.isDeleted && (
+                        <p className="text-xs mt-1 opacity-60 text-right">
+                          {new Date(msg.createdAt).toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

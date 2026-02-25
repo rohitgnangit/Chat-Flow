@@ -100,3 +100,11 @@ export const getLastMessage = query({
     return messages
   }
 })
+
+// Delete a message (soft delete by setting isDeleted to true)
+export const deleteMessage = mutation({
+  args: { messageId: v.id('messages') },
+  handler: async (ctx, args) => {
+    await ctx.db.patch(args.messageId, { isDeleted: true })
+  }
+})

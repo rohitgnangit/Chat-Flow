@@ -16,5 +16,6 @@ export default defineSchema({
         content: v.string(),
         createdAt: v.number(),
         read: v.optional(v.boolean()), 
+        isDeleted: v.optional(v.boolean()), 
   })
 })
